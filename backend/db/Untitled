@@ -1,0 +1,18 @@
+"""
+db package — database initialisation utilities.
+
+Exports the two init functions so callers can do:
+    from db import init_sqlite, init_vector_store
+"""
+
+from db.sqlite_init import init_sqlite, get_connection, get_schema_description, COLUMN_METADATA
+from db.vector_init import init_vector_store, get_vector_collection
+
+__all__ = [
+    "init_sqlite",
+    "get_connection",
+    "get_schema_description",
+    "COLUMN_METADATA",
+    "init_vector_store",
+    "get_vector_collection",
+]

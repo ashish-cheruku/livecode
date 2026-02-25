@@ -1,0 +1,11 @@
+/* Global styles and custom Tailwind utilities */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  /* Add custom utility classes here */
+}
