@@ -11,11 +11,13 @@ Each chunk is stored with rich metadata so the retrieval pipeline can
 surface source information alongside the answer.
 """
 
+from __future__ import annotations
+
 import logging
 from typing import Any
 
 import chromadb
-from chromadb.utils import embedding_functions
+from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
 from config import settings
 
@@ -233,7 +235,7 @@ def init_vector_store() -> chromadb.Collection:
     client = chromadb.PersistentClient(path=str(settings.chroma_dir))
 
     # OpenAI embedding function — ChromaDB calls this automatically on add/query
-    openai_ef = embedding_functions.OpenAIEmbeddingFunction(
+    openai_ef = OpenAIEmbeddingFunction(
         api_key=settings.openai_api_key,
         model_name=settings.embedding_model,
     )
@@ -281,7 +283,7 @@ def get_vector_collection() -> chromadb.Collection:
     """
     client = chromadb.PersistentClient(path=str(settings.chroma_dir))
 
-    openai_ef = embedding_functions.OpenAIEmbeddingFunction(
+    openai_ef = OpenAIEmbeddingFunction(
         api_key=settings.openai_api_key,
         model_name=settings.embedding_model,
     )

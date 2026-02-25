@@ -3,10 +3,13 @@ Application configuration — loads from .env via pydantic-settings.
 All other modules import from here; never read os.environ directly.
 """
 
-import os
+from __future__ import annotations
+
 from pathlib import Path
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import List
+
 from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 # Resolve the backend root directory (where this file lives)
@@ -62,7 +65,7 @@ class Settings(BaseSettings):
     # ------------------------------------------------------------------ #
     api_host: str = Field("0.0.0.0", description="Uvicorn bind host")
     api_port: int = Field(8000, description="Uvicorn bind port")
-    cors_origins: list[str] = Field(
+    cors_origins: List[str] = Field(
         default=["http://localhost:5173", "http://127.0.0.1:5173"],
         description="Allowed CORS origins (React dev server)",
     )

@@ -1,11 +1,67 @@
-/* Global styles and custom Tailwind utilities */
+@import "tailwindcss";
 
-@layer base {
-  * {
-    box-sizing: border-box;
-  }
+/*
+  Global resets and base styles.
+  Tailwind's preflight (CSS reset) is included via @import "tailwindcss".
+  Only add truly global styles here — component-level styles belong in TSX files.
+*/
+
+/* Ensure the app fills the full viewport height */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-@layer utilities {
-  /* Add custom utility classes here */
+/* Smooth scrolling for the chat window */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling for WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5); /* gray-400 at 50% opacity */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.7); /* gray-500 at 70% opacity */
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+/* Prevent text selection on UI chrome elements (badges, buttons, etc.)
+   Individual components add select-none where needed */
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure pre/code blocks don't overflow their containers */
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Line clamp utility (used in ArtifactsPanel chunk cards) */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
